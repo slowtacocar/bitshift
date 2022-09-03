@@ -28,3 +28,7 @@ body {
 .rfs-mb-8 {
   @include margin-bottom(8rem);
 }
+
+.rfs-mb-5 {
+  @include margin-bottom(5rem);
+}

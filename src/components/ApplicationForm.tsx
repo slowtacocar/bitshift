@@ -89,7 +89,7 @@ export default function ApplicationForm() {
               name="question2"
             />
             <FormGroup
-              label="discuss a time unified a group to accomplish a shared goal"
+              label="discuss a time you unified a group to accomplish a shared goal"
               name="question3"
             />
             <FormGroup

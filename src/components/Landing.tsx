@@ -5,11 +5,7 @@ import styled from "styled-components";
 import LogoGlyph from "./LogoGlyph";
 import WithArrow from "./WithArrow";
 import igLogo from "../images/Instagram_Glyph_White.svg";
-import inLogo from "../images/In-White-34.png";
-
-const BigText = styled.h1`
-  margin-bottom: 5rem;
-`;
+// import inLogo from "../images/In-White-34.png";
 
 const Glyph = styled.img`
   height: 1em;
@@ -35,10 +31,10 @@ export default function Landing() {
   return (
     <WithArrow>
       <motion.div animate={{ opacity: 1 }} style={{ opacity: 0 }}>
-        <BigText className="rfs-144">
+        <h1 className="rfs-144 rfs-mb-5">
           <LogoGlyph />
           itshift
-        </BigText>
+        </h1>
       </motion.div>
       <p
         className="rfs-36 mb-4"
@@ -57,9 +53,9 @@ export default function Landing() {
           <a href="https://www.instagram.com/bitshiftdaily/" target="_blank">
             <Glyph src={igLogo} />
           </a>
-          <a>
-            <Glyph src={inLogo} />
-          </a>
+          {/*<a>*/}
+          {/*  <Glyph src={inLogo} />*/}
+          {/*</a>*/}
         </p>
       </motion.div>
     </WithArrow>
