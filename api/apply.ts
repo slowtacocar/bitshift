@@ -1,6 +1,6 @@
 import { GatsbyFunctionRequest, GatsbyFunctionResponse } from "gatsby";
-import { ApplicationCreation, Json } from "../lib/api-types";
-import { applications } from "../lib/server/models";
+import { ApplicationCreation, Json } from "../src/lib/api-types";
+import { applications } from "../src/lib/server/models";
 
 export default async function handler(
   req: GatsbyFunctionRequest<Json<ApplicationCreation>>,
