@@ -13,13 +13,7 @@ export default function LoadingButton({
 }: LoadingButtonProps) {
   return (
     <Button type="submit" disabled={status === "loading"}>
-      {status === "loading"
-        ? "loading..."
-        : status === "success"
-        ? "✓"
-        : status === "error"
-        ? "x"
-        : children}
+      {status === "loading" ? "loading..." : children}
     </Button>
   );
 }

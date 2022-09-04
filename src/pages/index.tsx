@@ -10,15 +10,9 @@ import logo from "../images/bitshift-white-transparent-vector.svg";
 import About from "../components/About";
 import ApplicationForm from "../components/ApplicationForm";
 
-const Main = styled.div`
-  scroll-snap-type: y proximity;
-  overflow: scroll;
-  height: 100vh;
-`;
-
 const PaneContainer = styled.div`
   scroll-snap-align: start;
-  min-height: 100vh;
+  min-height: var(--doc-height);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -29,7 +23,7 @@ const PaneContainer = styled.div`
 `;
 
 const StickyPaneContainer = styled.div`
-  min-height: 100vh;
+  min-height: var(--doc-height);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -42,7 +36,7 @@ const StickyPaneContainer = styled.div`
 
 const DummyPaneContainer = styled.div`
   scroll-snap-align: start;
-  min-height: 100vh;
+  min-height: var(--doc-height);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -56,15 +50,15 @@ const DummyPaneContainer = styled.div`
 export default function Index() {
   const questionContainerRef = useRef<HTMLDivElement>(null);
   const aboutContainerRef = useRef<HTMLDivElement>(null);
-  const mainRef = useRef<HTMLDivElement>(null);
 
-  const { scrollY } = useScroll({ container: mainRef });
+  const { scrollY } = useScroll();
   const [fixQuestion, setFixQuestion] = useState(false);
   const [fixAbout, setFixAbout] = useState(false);
+  const [showQuestion, setShowQuestion] = useState(false);
 
   useEffect(
     () =>
-      scrollY.onChange(() => {
+      scrollY.onChange((y) => {
         if (questionContainerRef.current) {
           setFixQuestion(
             questionContainerRef.current.getBoundingClientRect().top > 0
@@ -75,13 +69,28 @@ export default function Index() {
             aboutContainerRef.current.getBoundingClientRect().top > 0
           );
         }
+        if (y > 0) setShowQuestion(true);
       }),
     []
   );
 
+  useEffect(() => {
+    function documentHeight() {
+      document.documentElement.style.setProperty(
+        "--doc-height",
+        `${window.innerHeight}px`
+      );
+    }
+    window.addEventListener("resize", documentHeight);
+    documentHeight();
+    return () => {
+      window.removeEventListener("resize", documentHeight);
+    };
+  }, []);
+
   // TODO this is quite possibly the shittiest code i've ever written
   return (
-    <Main ref={mainRef}>
+    <>
       <PaneContainer>
         <Landing />
       </PaneContainer>
@@ -93,12 +102,14 @@ export default function Index() {
             zIndex: -1,
           }}
         >
-          <BigQuestion inView={!fixQuestion} />
+          <BigQuestion inView={showQuestion} />
         </StickyPaneContainer>
       </div>
-      <DummyPaneContainer>
-        <BigQuestion inView={false} />
-      </DummyPaneContainer>
+      <div className="position-relative">
+        <DummyPaneContainer>
+          <BigQuestion inView={false} />
+        </DummyPaneContainer>
+      </div>
       <div className="position-relative" ref={aboutContainerRef}>
         <StickyPaneContainer
           style={{
@@ -110,13 +121,15 @@ export default function Index() {
           <About />
         </StickyPaneContainer>
       </div>
-      <DummyPaneContainer>
-        <About />
-      </DummyPaneContainer>
+      <div className="position-relative">
+        <DummyPaneContainer>
+          <About />
+        </DummyPaneContainer>
+      </div>
       <PaneContainer>
         <ApplicationForm />
       </PaneContainer>
-    </Main>
+    </>
   );
 }
 

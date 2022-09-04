@@ -26,6 +26,7 @@
     "gatsby-plugin-styled-components": "^5.22.0",
     "mongodb": "^4.9.1",
     "react": "^18.1.0",
+    "react-confetti": "^6.1.0",
     "react-dom": "^18.1.0",
     "sass": "^1.54.8",
     "styled-components": "^5.3.5",

@@ -29,12 +29,14 @@ export default function BigQuestion({ inView }: BigQuestionProps) {
       <div className="d-flex flex-column">
         <motion.div
           animate={inView ? { opacity: 1 } : { opacity: 0 }}
+          initial={{ opacity: 0 }}
           transition={inView ? { duration: 1 } : { duration: 0.5 }}
         >
           <BigText className="rfs-96">what will happen</BigText>
         </motion.div>
         <motion.div
           animate={inView ? { opacity: 1 } : { opacity: 0 }}
+          initial={{ opacity: 0 }}
           transition={inView ? { duration: 1, delay: 0.5 } : { duration: 0.5 }}
         >
           <p className="rfs-36">
@@ -51,6 +53,7 @@ export default function BigQuestion({ inView }: BigQuestionProps) {
         </motion.div>
         <motion.div
           animate={inView ? { opacity: 1 } : { opacity: 0 }}
+          initial={{ opacity: 0 }}
           transition={inView ? { duration: 1, delay: 2 } : { duration: 0.5 }}
         >
           <EndText className="rfs-96 rfs-mb-8">let's find out</EndText>

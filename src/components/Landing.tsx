@@ -31,13 +31,13 @@ export default function Landing() {
   return (
     <WithArrow>
       <motion.div animate={{ opacity: 1 }} style={{ opacity: 0 }}>
-        <h1 className="rfs-144 rfs-mb-5">
+        <h1 className="rfs-144 rfs-mb-5 text-center">
           <LogoGlyph />
           itshift
         </h1>
       </motion.div>
       <p
-        className="rfs-36 mb-4"
+        className="rfs-36 mb-4 text-center"
         style={{
           borderRight: bar ? "0.5em solid white" : "0.5em solid transparent",
         }}
